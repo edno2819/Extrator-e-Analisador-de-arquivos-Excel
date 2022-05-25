@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from web import Webdriver
+from Scrap.web import Webdriver
 from time import sleep
 
 

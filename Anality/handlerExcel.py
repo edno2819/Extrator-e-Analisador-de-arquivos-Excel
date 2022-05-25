@@ -15,3 +15,11 @@ class hanlderExcel:
         
     def salve(self, file_path):
         self.wb.save(file_path)
+    
+class excelTemplate(hanlderExcel):
+    def __init__(self, file_path):
+        super().__init__(file_path)
+        self.list_cod = {str(row.value): row.row for row in self.wb['PARAMETROS']['A']}
+    
+    def findCod(self, cod):
+        return f'A{self.list_cod[cod]}' if cod in self.list_cod.keys() else False

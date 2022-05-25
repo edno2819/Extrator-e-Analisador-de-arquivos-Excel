@@ -1,3 +1,15 @@
+from Anality.handlerExcel import excelTemplate
+from os import walk
+import os
+
+
+CONFIGS = {
+    'CURRENT-PATH': os.path.abspath(os.getcwd()),
+    'SO': 'LINUX',
+    'SPLITER': '/',
+    'PATH_ERRO': 'Erro',
+    'PATH_SURE': 'OK',
+}
 
 
 class Compare:
@@ -38,18 +50,23 @@ class Compare:
 
 
 class moduleAnality:
-    PATH_ERRO = ''
-    PATH_SURE = ''
+    PATH_ERRO = CONFIGS['PATH_ERRO']
+    PATH_SURE = CONFIGS['PATH_SURE']
 
     def __init__(self, folderFiles, fileTemplate) -> None:
         self.folder = folderFiles
+        self.fileTemplate = fileTemplate
+        self.b = excelTemplate(self.fileTemplate)
 
     def getAllFiles(self):
         'obter um lista de todos os excels dentro da pasta'
+        self.filenames = next(walk(self.folder), (None, None, []))[2]
+        'checagem de tipo'
 
     def findRowTemplate(self, cod):
         '''retorna a localização da linha do arquivo template com o mesmo
         código ex: A2, A35'''
+        return self.b.findCod(cod)
 
     def exeRules(self, comparator):
         erros = {}
@@ -80,13 +97,15 @@ class moduleAnality:
         self.moveFile(file, self.PATH_SURE)
 
     def CompareAll(self):
-        for file in self.folder:
-            cod = 'codigo do arquivo'
-            gab = self.findRowTemplate(cod)
-            if gab:
-                comparator = Compare()
+        self.getAllFiles()
+        for file in self.filenames:
+            file_path = self.folder + CONFIGS['SPLITER'] + file
+            cod = '1092651'  # codigo do arquivo'
+            row = self.findRowTemplate(cod)
+            if row:
+                comparator = Compare(row, file_path)
                 errosFile = self.exeRules(comparator)
-                if errosFile:
+                if any(type(x) == list for x in errosFile.values()):
                     self.hasError(file, errosFile)
                 else:
                     self.hasNotError(file)
