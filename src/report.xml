@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.076" timestamp="2022-05-29T18:43:13.506313" hostname="edno-28"><testcase classname="Anality.test_analyse" name="test_meu" time="0.001"><failure message="assert 5 == 4">def test_meu():
+&gt;       assert 5 == 4
+E       assert 5 == 4
+
+Anality/test_analyse.py:2: AssertionError</failure></testcase><testcase classname="Anality.test_analyse" name="test_x" time="0.001" /><testcase classname="Anality.test_analyse" name="test_y" time="0.001" /></testsuite></testsuites>

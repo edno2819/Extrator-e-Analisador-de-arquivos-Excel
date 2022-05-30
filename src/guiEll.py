@@ -32,7 +32,7 @@ def close_callback(route, websockets):
 def start_eel():
     ports = [8000, 8001, 27000, 8080]
 
-    eel.start("index.html", size=(730, 530), close_callback=close_callback)
+    eel.start("index.html", size=(690, 540), close_callback=close_callback)
 
     # for port in ports:
     #     if not check_port(port):
