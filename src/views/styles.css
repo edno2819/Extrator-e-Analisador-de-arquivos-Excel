@@ -101,4 +101,11 @@ body {
     border-radius: 10px;
     background-color: var(--greenForte);
     border-style: none;
+    cursor: pointer;
 }
+
+.button-execut:hover {
+    height: 40px;
+    width: 110px;
+}
+

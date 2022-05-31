@@ -1,5 +1,13 @@
 *__pycache__
-*/download/*
+.py*
+
 *filesTest
 */logs/*
 venv
+.vscode
+lembrete.txt
+/src/download/*
+/src/logs/*
+/src/Erro/*
+/src/OK/*
+/src/fileTemplate/*

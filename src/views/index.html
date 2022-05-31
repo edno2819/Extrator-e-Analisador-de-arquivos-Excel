@@ -29,7 +29,7 @@
             <p class='text'>
                 Extraia os arquivos automaticamente para pasta configurada.
             </p>
-            <button class="button-execut">Executar</button>
+            <button onclick="botao_1()" class="button-execut">Executar</button>
         </div>
 
         <div class='Div Extrator'>
@@ -41,7 +41,7 @@
             <p class='text'>
                Verifique os erros dos arquivos baixados e destaque seus erros.
             </p>
-            <button class="button-execut">Executar</button>
+            <button onclick="botao_2()" class="button-execut">Executar</button>
         </div>
 
         <div class='Div Extrator'>
@@ -53,7 +53,7 @@
             <p class='text'>
                 Após a verificação manual dos erros, mova os arquivos para a pasta de arquivos corretos.
             </p>
-            <button class="button-execut">Executar</button>
+            <button onclick="botao_3()" class="button-execut">Executar</button>
         </div>
 
         <div class='Div Extrator'>
@@ -65,87 +65,14 @@
             <p class='text'>
                 Configure as vaviáveis do programa.
             </p>
-            <button class="button-execut">Executar</button>
+            <button onclick="botao_4()" class="button-execut">Executar</button>
         </div>
 
     </div>
 
 
 
-    <script type="text/javascript">
-
-        eel.get_mensagem()
-        eel.expose(get_mensagem_init);
-        function get_mensagem_init(result) {
-            result = JSON.parse(result)
-            console.log(result)
-            document.getElementById('mensagem').innerText = result.mensagem;
-        }
-        //--------------------------------------------ONLY FUNCTIONS JS----------------------------------------------------------------------  
-
-        function generateBarCode() {
-            result = JSON.parse(eel.get_mensagem())
-            document.createElement('mensagem').innerText = result.mensagem
-        }
-
-        //REGISTRO DE NOVO USUARIO//---------------------------------------------------------  
-        async function save_register_js() {
-            eel.btn_save($('#new_name').val(), $('#new_phone').val(), $('#new_date').val(),
-                $('#new_login').val(), $('#new_pass').val(), $('#new_email').val())
-        };
-        eel.expose(save_return);
-        function save_return(status) {
-            if (status == "sucesso") {
-                $('#return_register').text('Registro concluido com sucesso!');
-                $('#new_name').val('');
-                $('#new_phone').val('');
-                $('#new_login').val('');
-                $('#new_pass').val('');
-                $('#new_email').val('');
-            }
-            if (status == "falha") {
-                $('#return_register').text('Erro ao registrar, verifique se não tem campos em branco.');
-            }
-        };
-
-        //RECUPERAR SENHA//---------------------------------------------------------  
-        async function reco_pass_js() {
-            $('#reco_label').text("Verificando email, aguarde...")
-            eel.btn_recovery($('#get_email').val())
-        };
-        eel.expose(reco_return)
-        function reco_return(status) {
-            if (status == "sucesso") {
-                $('#reco_label').text("Senha enviado para o email com sucesso!")
-            }
-            if (status == "falha") {
-                $('#reco_label').text("Não encontramos o email informado")
-            }
-        };
-
-        //LOGAR USUARIO//---------------------------------------------------------  
-        async function login_user() {
-            eel.btn_login($('#get_user_login').val(), $('#get_user_password').val())
-        };
-        eel.expose(login_return)
-        function login_return(status) {
-            var status = JSON.parse(status);
-
-            if (status.status_bot == "True" & status.status_iq == "True") {
-                eel.change_current_page("configs_1.html");
-                window.location.href = "configs_1.html";
-            }
-            else if (status.status_iq == "False") {
-                $('#login_txt').text("Usuario ou Senha incorreto")
-            }
-            else if (status.status_bot == "False" & status.status_iq == "True") {
-                $('#login_txt').text("Usuario sem acesso ao bot")
-            }
-        }
-
-
-    </script>
-
+    <script src="scripts.js"></script>
 </body>
 
 </html>
