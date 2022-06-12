@@ -3,15 +3,16 @@ from Anality.main import moduleAnality
 import os
 
 CONFIGS = {
-    'CURRENT-PATH': os.path.abspath(os.getcwd())+'/src',  # tirar
     'SO': 'LINUX',
-    'SPLITER': '/',
 }
+CONFIGS['SPLITER'] = '\\'  if CONFIGS['SO']=='WINDOWS'else '/'
+CONFIGS['CURRENT-PATH'] =  os.path.abspath(os.getcwd())+f'{CONFIGS["SPLITER"]}src',
+
 
 PATHS = {
-    'LISTA DE CODIGOS': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}fileTemplate/LISTA_REVENDAS.xlsx',
+    'LISTA DE CODIGOS': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}fileTemplate{CONFIGS["SPLITER"]}LISTA_REVENDAS.xlsx',
     'DOWNLOAD': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}download',
-    'TEMPLATES': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}fileTemplate/template.xlsm',
+    'TEMPLATES': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}fileTemplate{CONFIGS["SPLITER"]}template.xlsm',
     'PATH_ERRO': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}Erro',
     'PATH_SURE': f'{CONFIGS["CURRENT-PATH"]}{CONFIGS["SPLITER"]}OK',
 }
@@ -39,4 +40,4 @@ class ExecuteGui:
 
 
 if __name__ == '__main__':
-    ExecuteGui.button2()
+    ExecuteGui.button1()

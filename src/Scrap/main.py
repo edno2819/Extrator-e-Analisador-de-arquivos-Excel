@@ -10,13 +10,14 @@ class ModelScrap:
 
     def readExcel(self):
         self.df = pd.read_excel(self.PATH['LISTA DE CODIGOS'])
-        self.codigos = self.df['CODIGOS'].value_counts
+        self.codigos = self.df['CODIGOS'].values
         self.PATH = self.PATH['DOWNLOAD']
 
     def start(self):
         self.site = Site()
         self.site.open_page()
         for cod in self.codigos:
+            cod = str(cod)
             name = self.site.pross(cod)
             if name:
                 path = self.PATH + name
@@ -24,7 +25,7 @@ class ModelScrap:
                 self.moveFolder()
                 print(f'Salvo: {name}')
         self.site.close()
-
+        
     def save(self, itens_data):
         self.to_excel.write(itens_data, self.path_scraps)
 
@@ -37,15 +38,8 @@ class ModelScrap:
     def run(self):
         self.site = Site()
         name = self.site.teste()
-        path = f"{self.PATH}/{name.split('.')[0]}"
+        path = f"{self.PATH}{self.PATH['SPLITER']}{name.split('.')[0]}"
         self.set_enviroment(path)
-        self.moveFolder(self.PATH + '/' + name, path + '/' + name)
+        self.moveFolder(
+            self.PATH + self.PATH['SPLITER'] + name, path + self.PATH['SPLITER'] + name)
         self.site.close()
-
-
-if __name__ == '__main__':
-    a = ModelScrap()
-    a.readExcel('LISTA_REVENDAS.xlsx')
-    a.teste()
-    a.start(['1092651'])
-    a
